@@ -3,8 +3,8 @@
 Small classes that turn a Modal Sandbox into a computer an AI agent can use: a web browser, a Linux
 desktop, or an Android phone. The only dependency is `modal`.
 
-The code is short enough to read in one sitting or to hand to a coding agent: start with
-`computers/base.py` and `agent/loop.py`.
+The blog post [Using Modal Sandboxes for Computer Use](https://drchrislevy.com/blog/modal-computer-use)
+walks through the code.
 
 | Folder | What is in it |
 | --- | --- |
@@ -81,11 +81,6 @@ uv run python -m evals.run --suite miniwob       # MiniWoB++, 125 small browser 
 uv run python -m evals.run --suite webbench      # WebBench, 42 long browser tasks; needs a download, see evals/webbench.py
 uv run python -m evals.run --suite androidworld  # AndroidWorld, 116 phone tasks; first run evals.androidworld.setup once
 ```
-
-OSWorld, 36 desktop tasks, runs from a checkout of OSWorld with its own Python: see `evals/osworld/run.py`.
-
-Every trial gets a fresh Sandbox, and a check reads the computer's real state (the page, a file, a phone
-setting) and never trusts the agent's own claim. Results and a replay of each run land in `runs/`.
 
 Results with Kimi K3.1 Pro, as trials passed. The first three columns are this repo's loop with each
 view. The last is [Browser Use](https://github.com/browser-use/browser-use) 0.13.6 with the same model, in
