@@ -4,7 +4,6 @@ __pycache__/
 runs/
 .pytest_cache/
 .ruff_cache/
-!blog/*.png
 *.mp4
 recordings/
 .DS_Store

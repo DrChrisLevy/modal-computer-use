@@ -3,8 +3,8 @@
 Small classes that turn a Modal Sandbox into a computer an AI agent can use: a web browser, a Linux
 desktop, or an Android phone. The only dependency is `modal`.
 
-[The blog post](blog/post.md) walks through how it works. The code is short enough to read in one
-sitting or to hand to a coding agent: start with `computers/base.py` and `agent/loop.py`.
+The code is short enough to read in one sitting or to hand to a coding agent: start with
+`computers/base.py` and `agent/loop.py`.
 
 | Folder | What is in it |
 | --- | --- |
