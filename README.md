@@ -82,6 +82,8 @@ uv run python -m evals.run --suite webbench      # WebBench, 42 long browser tas
 uv run python -m evals.run --suite androidworld  # AndroidWorld, 116 phone tasks; first run evals.androidworld.setup once
 ```
 
+OSWorld, 36 desktop tasks, runs from a checkout of OSWorld with its own Python: see `evals/osworld/run.py`.
+
 Results with Kimi K3.1 Pro, as trials passed. The first three columns are this repo's loop with each
 view. The last is [Browser Use](https://github.com/browser-use/browser-use) 0.13.6 with the same model, in
 the same Sandbox. Browser Use is about 64,000 lines of Python; `computers/` and `agent/` together are
