@@ -1,0 +1,19 @@
+[project]
+name = "computers"
+version = "0.1.0"
+description = "Small classes for browser, desktop and Android computer use on Modal Sandboxes"
+requires-python = ">=3.12"
+dependencies = ["modal>=1.6"]
+
+[dependency-groups]
+dev = ["pytest>=8", "ruff>=0.8"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

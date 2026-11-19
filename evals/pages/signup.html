@@ -1,0 +1,28 @@
+<!doctype html>
+<title>Sign up</title>
+<style>
+  body { font: 18px sans-serif; margin: 40px; max-width: 520px; }
+  label { display: block; margin-top: 18px; }
+  input[type=text], input[type=email], select { display: block; width: 100%; font-size: 18px; padding: 8px; margin-top: 6px; }
+  button { margin-top: 24px; font-size: 18px; padding: 10px 24px; }
+</style>
+<h1>Create your account</h1>
+<form>
+  <label>Full name <input type="text" id="name"></label>
+  <label>Email <input type="email" id="email"></label>
+  <label>Plan
+    <select id="plan"><option>Free</option><option>Team</option><option>Enterprise</option></select>
+  </label>
+  <label><input type="checkbox" id="terms"> I accept the terms</label>
+  <button type="submit">Create account</button>
+</form>
+<p id="message"></p>
+<script>
+  const field = (id) => document.getElementById(id);
+  document.querySelector("form").onsubmit = (event) => {
+    event.preventDefault();
+    window.passed = field("name").value.trim() === "Ada Lovelace" && field("email").value.trim() === "ada@example.com" &&
+      field("plan").value === "Team" && field("terms").checked;
+    field("message").textContent = "Thanks, your account request was received.";
+  };
+</script>

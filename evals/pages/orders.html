@@ -1,0 +1,30 @@
+<!doctype html>
+<title>Orders</title>
+<style>
+  body { font: 18px sans-serif; margin: 40px; }
+  table { border-collapse: collapse; margin: 16px 0 28px; }
+  td, th { border: 1px solid #bbb; padding: 8px 18px; text-align: left; }
+  input { font-size: 18px; padding: 8px; width: 160px; }
+  button { font-size: 18px; padding: 8px 20px; }
+</style>
+<h1>Recent orders</h1>
+<table>
+  <tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th></tr>
+  <tr><td>#1039</td><td>R. Okafor</td><td>3</td><td>$84.10</td></tr>
+  <tr><td>#1040</td><td>M. Haddad</td><td>1</td><td>$1,204.00</td></tr>
+  <tr><td>#1041</td><td>S. Lindqvist</td><td>7</td><td>$318.04</td></tr>
+  <tr><td>#1042</td><td>J. Tanaka</td><td>2</td><td>$318.40</td></tr>
+  <tr><td>#1043</td><td>P. Moreau</td><td>5</td><td>$42.75</td></tr>
+  <tr><td>#1044</td><td>J. Tanaka</td><td>4</td><td>$381.40</td></tr>
+  <tr><td>#1045</td><td>A. Nowak</td><td>2</td><td>$96.00</td></tr>
+</table>
+<label>Total to refund <input id="amount"></label>
+<button id="refund">Issue refund</button>
+<p id="message"></p>
+<script>
+  document.getElementById("refund").onclick = () => {
+    const amount = document.getElementById("amount").value.replace(/[$,\s]/g, "");
+    window.passed = Number(amount) === 318.4;
+    document.getElementById("message").textContent = `Refund of $${amount} submitted.`;
+  };
+</script>

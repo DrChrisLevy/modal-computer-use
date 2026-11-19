@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.png
+runs/
+.pytest_cache/
+.ruff_cache/
+!blog/*.png
+*.mp4
+recordings/
+.DS_Store

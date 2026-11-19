@@ -1,0 +1,26 @@
+<!doctype html>
+<title>Buttons</title>
+<style>
+  body { font: 18px sans-serif; margin: 40px; }
+  button { position: absolute; width: 150px; height: 60px; font-size: 18px; }
+  button.done { background: #9fd8a5; }
+</style>
+<h1>Press the buttons in the requested order</h1>
+<p id="progress">Pressed 0 of 4</p>
+<button style="left: 880px; top: 520px">Alpha</button>
+<button style="left: 140px; top: 600px">Bravo</button>
+<button style="left: 560px; top: 260px">Charlie</button>
+<button style="left: 300px; top: 400px">Delta</button>
+<script>
+  // A wrong press starts the sequence again.
+  const order = ["Charlie", "Alpha", "Delta", "Bravo"];
+  let pressed = 0;
+  for (const button of document.querySelectorAll("button")) {
+    button.onclick = () => {
+      pressed = button.textContent === order[pressed] ? pressed + 1 : 0;
+      document.querySelectorAll("button").forEach((b) => b.classList.toggle("done", order.indexOf(b.textContent) < pressed));
+      document.getElementById("progress").textContent = `Pressed ${pressed} of 4`;
+      window.passed = pressed === order.length;
+    };
+  }
+</script>

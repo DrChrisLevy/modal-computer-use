@@ -1,0 +1,24 @@
+<!doctype html>
+<title>Verification</title>
+<style>
+  body { font: 18px sans-serif; margin: 40px; }
+  input { font-size: 18px; padding: 8px; width: 160px; }
+  button { font-size: 18px; padding: 8px 20px; }
+  .filler { height: 2200px; border-left: 4px dashed #ccc; margin: 30px 0; padding-left: 16px; color: #777; }
+</style>
+<h1>Verify your device</h1>
+<label>Verification code <input id="code"></label>
+<button id="verify">Verify</button>
+<p id="message"></p>
+<div class="filler">The code is at the bottom of this page.</div>
+<button id="reveal">Show my code</button>
+<p id="revealed"></p>
+<script>
+  // A new code on every load, so it has to be read from the page.
+  const code = Array.from({ length: 5 }, () => "ACDEFHJKMNPRTWXY34679"[Math.floor(Math.random() * 21)]).join("");
+  document.getElementById("reveal").onclick = () => (document.getElementById("revealed").textContent = `Your code is ${code}`);
+  document.getElementById("verify").onclick = () => {
+    window.passed = document.getElementById("code").value.trim().toUpperCase() === code;
+    document.getElementById("message").textContent = window.passed ? "Device verified." : "That code is not right.";
+  };
+</script>

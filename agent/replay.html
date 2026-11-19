@@ -1,0 +1,48 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Agent run</title>
+<style>
+  body { font: 15px/1.5 system-ui, sans-serif; margin: 24px auto; max-width: 1100px; padding: 0 16px; }
+  img, pre { max-width: 100%; border: 1px solid #ccc; }
+  pre { padding: 12px; white-space: pre-wrap; max-height: 420px; overflow: auto; }
+  code { background: #eee; padding: 2px 6px; }
+  nav { display: flex; gap: 12px; align-items: center; margin: 12px 0; }
+</style>
+<h1 id="task"></h1>
+<nav>
+  <button id="back">← Previous</button>
+  <span id="position"></span>
+  <button id="next">Next →</button>
+  <span>(or use the arrow keys)</span>
+</nav>
+<p><b>Thought:</b> <span id="thought"></span></p>
+<p><b>Action:</b> <code id="action"></code> <span id="seconds"></span></p>
+<img id="image" alt="What the model saw before this action">
+<pre id="screen"></pre>
+<p id="answer"></p>
+<script>
+  const run = __RUN__;
+  const show = (id, text) => (document.getElementById(id).textContent = text ?? "");
+  let current = 0;
+  function render() {
+    const step = run.steps[current];
+    show("position", `Step ${current + 1} of ${run.steps.length}`);
+    show("thought", step.thought);
+    show("action", step.action);
+    show("seconds", `${step.seconds}s`);
+    show("screen", step.screen);
+    document.getElementById("screen").hidden = !step.screen;
+    document.getElementById("image").hidden = !step.image;
+    if (step.image) document.getElementById("image").src = step.image;
+  }
+  function move(by) {
+    current = Math.min(Math.max(current + by, 0), run.steps.length - 1);
+    render();
+  }
+  show("task", run.task);
+  show("answer", run.answer === null ? "The run ended without an answer." : `Answer: ${run.answer}`);
+  document.getElementById("back").onclick = () => move(-1);
+  document.getElementById("next").onclick = () => move(1);
+  document.onkeydown = (event) => move({ ArrowLeft: -1, ArrowRight: 1 }[event.key] ?? 0);
+  if (run.steps.length) render();
+</script>

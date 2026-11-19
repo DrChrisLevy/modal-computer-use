@@ -1,0 +1,39 @@
+<!doctype html>
+<title>Stationery shop</title>
+<style>
+  body { font: 18px sans-serif; margin: 40px; display: flex; gap: 60px; }
+  .product { display: flex; justify-content: space-between; align-items: center; width: 420px; padding: 10px 0; border-bottom: 1px solid #ccc; }
+  button { font-size: 16px; padding: 6px 14px; }
+  #cart { min-width: 320px; }
+</style>
+<main>
+  <h1>Stationery shop</h1>
+  <div id="products"></div>
+</main>
+<aside id="cart">
+  <h2>Your cart</h2>
+  <ul id="items"></ul>
+  <button id="checkout">Check out</button>
+  <p id="message"></p>
+</aside>
+<script>
+  const products = ["Pencil", "Notebook", "Eraser", "Pen", "Ruler", "Stapler"];
+  const cart = {};
+  const show = () => {
+    document.getElementById("items").innerHTML = Object.entries(cart)
+      .map(([name, count]) => `<li>${name} × ${count} <button data-remove="${name}">Remove one</button></li>`).join("") || "<li>Empty</li>";
+  };
+  document.getElementById("products").innerHTML = products
+    .map((name) => `<div class="product"><span>${name}</span><button data-add="${name}">Add ${name}</button></div>`).join("");
+  document.body.onclick = (event) => {
+    const { add, remove } = event.target.dataset;
+    if (add) cart[add] = (cart[add] || 0) + 1;
+    if (remove && --cart[remove] === 0) delete cart[remove];
+    show();
+  };
+  document.getElementById("checkout").onclick = () => {
+    window.passed = JSON.stringify(Object.entries(cart).sort()) === JSON.stringify([["Notebook", 2], ["Pen", 1]]);
+    document.getElementById("message").textContent = "Order placed.";
+  };
+  show();
+</script>
